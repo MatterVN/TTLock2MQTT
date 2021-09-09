@@ -19,7 +19,7 @@ ttlock_username: YOUR_TTLOCK_DEVELOPER_ACCOUNT
 ttlock_password: YOUR_TTLOCK_DEVELOPER_PASSWORD
 ttlock_client_id: YOUR_TTLOCK_CLIENT_APP
 ttlock_client_secret: YOUR_TTLOCK_CLIENT_SECRET
-mqttb_host: 'core-mosquitto'
+mqtt_host: 'core-mosquitto'
 mqtt_port: '1883'
 mqtt_username: BROKER_USER
 mqtt_password: BROKER_PASS
