@@ -1,0 +1,38 @@
+{
+  "name": "TTLock2MQTT",
+  "version": "0.3.1",
+  "slug": "ttlock2mqtt",
+  "description": "Connection between TTLock devices with Home Assistant using MQTT",
+  "arch": [
+    "armhf",
+    "armv7",
+    "aarch64",
+    "amd64",
+    "i386"
+  ],
+  "services": [
+    "mqtt:need"
+  ],
+  "url": "https://github.com/tonyldo/tonyldo-hassio-addons/tree/master/ttlock2mqtt",
+  "startup": "system",
+  "boot": "auto",
+  "options": {
+    "mqtt_host": "core-mosquitto",	
+    "publishstatedelay": 60,
+    "publishbatterydelay": 300,
+    "loglevel": "INFO"
+  },
+  "schema": {
+    "ttlock_username": "str",
+    "ttlock_password":"str",
+    "ttlock_client_id": "str",
+    "ttlock_client_secrect": "str",
+    "mqtt_host": "str?",	
+    "mqtt_port": "port?",	
+    "mqtt_username": "str",	
+    "mqtt_password": "str",
+    "publishstatedelay": "int?",
+    "publishbatterydelay": "int?",
+    "loglevel": "list(DEBUG|INFO|WARNING|ERROR)?"
+  }
+}
