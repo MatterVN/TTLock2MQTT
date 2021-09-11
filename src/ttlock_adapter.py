@@ -22,6 +22,8 @@ class TTLock2MQTTClient(mqtt.Client):
         self.keepalive_mqtt = keepalive
         if broker_user and broker_pass:
             self.username_pw_set(broker_user, password=broker_pass)
+        if port == 8883:
+            self.tls_set()
         logging.info("Client {} TTlock Mqtt Created".format(
             self.mqttClientId))
         self.COMMAND_TOPIC = None
