@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.3.2
+- MQTT Broker auto discover
+
 ## 0.3.1
 - Use TTLock username& password to generate token
 

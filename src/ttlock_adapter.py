@@ -79,7 +79,7 @@ class TTLock2MQTTClientGateway(TTLock2MQTTClient):
 
         self.DISCOVERY_GATEWAY_CONNECTION_TOPIC = 'homeassistant/binary_sensor/ttlock/{}_gateway/config'.format(
             self.getGatewayId())
-        self.CONNECTION_BINARY_SENSOR_TOPIC = 'ttlocktomqtt/{}/connection'.format(
+        self.CONNECTION_BINARY_SENSOR_TOPIC = 'TTLock2MQTT/{}/connection'.format(
             self.getGatewayId())
         self.CONNECTION_BINARY_SENSOR_PAYLOAD = '{{"device_class": "connectivity", "name": "{} connection", "state_topic": "{}", "value_template": "{{{{ value_json.connection }}}}", "uniq_id":"{}_CONNECTION","device":{{"identifiers":["{}"], "name": "TTLOCK_GATEWAY_{}", "connections":[["mac","{}"]]}} }}'
         self.CONNECTION_PAYLOAD = '{{"connection": "{}"}}'
@@ -151,10 +151,10 @@ class TTLock2MQTTClientLock(TTLock2MQTTClient):
             self.getLockId())
         self.DISCOVERY_SENSOR_TOPIC = 'homeassistant/sensor/ttlock/{}_battery/config'.format(
             self.getLockId())
-        self.BATTERY_LEVEL_SENSOR_TOPIC = 'ttlocktomqtt/{}/battery'.format(
+        self.BATTERY_LEVEL_SENSOR_TOPIC = 'TTLock2MQTT/{}/battery'.format(
             self.getLockId())
-        self.COMMAND_TOPIC = 'ttlocktomqtt/{}/command'.format(self.getLockId())
-        self.STATE_SENSOR_TOPIC = 'ttlocktomqtt/{}/state'.format(
+        self.COMMAND_TOPIC = 'TTLock2MQTT/{}/command'.format(self.getLockId())
+        self.STATE_SENSOR_TOPIC = 'TTLock2MQTT/{}/state'.format(
             self.getLockId())
         self.DISCOVERY_LOCK_PAYLOAD = '{{"name": "{} lock", "command_topic": "{}", "state_topic": "{}", "value_template": "{{{{ value_json.state }}}}", "uniq_id":"{}_lock","device":{{"identifiers":["{}"], "name": "TTLOCK_LOCK_{}", "connections":[["mac","{}"]]}} }}'
         self.DISCOVERY_BATTERY_LEVEL_SENSOR_PAYLOAD = '{{"device_class": "battery", "name": "{} battery", "state_topic": "{}", "unit_of_measurement": "%", "value_template": "{{{{ value_json.battery }}}}", "uniq_id":"{}_battery","device":{{"identifiers":["{}"], "name": "TTLOCK_LOCK_{}", "connections":[["mac","{}"]]}} }}'
@@ -363,14 +363,14 @@ if __name__ == '__main__':
     ttlock_client = None
     ttlock_secret = None
     
-    state_delay = DELAY_BETWEEN_LOCK_PUBLISH_INFOS
-    battery_delay = DELAY_BETWEEN_LOCK_PUBLISH_INFOS*5
+    scan_interval = DELAY_BETWEEN_LOCK_PUBLISH_INFOS
+    battery_scan_interval = DELAY_BETWEEN_LOCK_PUBLISH_INFOS*5
     loglevel = 'INFO'
     full_cmd_arguments = sys.argv
     argument_list = full_cmd_arguments[1:]
-    short_options = 'U:P:i:s:b:o:u:p:l:S:B:'
+    short_options = 'U:P:i:s:b:o:u:p:l:S'
     long_options = ['tt_user=', 'tt_pass=','tt_id=','tt_secret=','mqtt_host=', 'mqtt_port=', 'mqtt_user=',
-                    'mqtt_pass=', 'log_level=', 'State_delay=','Battery_delay=']
+                    'mqtt_pass=', 'log_level=', 'scan=']
     try:
         arguments, values = getopt.getopt(
             argument_list, short_options, long_options)
@@ -398,21 +398,22 @@ if __name__ == '__main__':
             broker_pass = current_value
         elif current_argument in ("-l", "--log_level"):
             loglevel = current_value
-        elif current_argument in ("-S", "--State_delay"):
-            state_delay = int(current_value)
-        elif current_argument in ("-B", "--Battery_delay"):
-            battery_delay = int(current_value)
+        elif current_argument in ("-S", "--scan"):
+            scan_interval = int(current_value)
+
+
+    battery_scan_interval = scan_interval * 5
 
     numeric_level = getattr(logging, loglevel.upper(), None)
     if not isinstance(numeric_level, int):
         raise ValueError('Invalid log level: %s' % loglevel)
 
     logging.basicConfig(level=numeric_level, datefmt='%Y-%m-%d %H:%M:%S',
-                        format='%(asctime)-15s - [%(levelname)s] TTLOCK2MQTT: %(message)s', )
+                        format='%(asctime)-15s - [%(levelname)s] TTLock2MQTT: %(message)s', )
 
     logging.debug("Options: {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}".format(
-        ttlock_user, ttlock_pass, ttlock_client, ttlock_secret, broker, port, broker_user,loglevel, broker_pass,state_delay,battery_delay))
+        ttlock_user, ttlock_pass, ttlock_client, ttlock_secret, broker, port, broker_user,loglevel, broker_pass,scan_interval,battery_scan_interval))
     ttlock_token = create_access_token(ttlock_user, ttlock_pass, ttlock_client, ttlock_secret)
     logging.debug("Access Token: {}".format(ttlock_token))
     
-    main(broker, port, broker_user, broker_pass, ttlock_client, ttlock_token,state_delay,battery_delay)
+    main(broker, port, broker_user, broker_pass, ttlock_client, ttlock_token,scan_interval,battery_scan_interval)

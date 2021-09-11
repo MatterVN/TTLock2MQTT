@@ -15,33 +15,27 @@ Integrating your TTLock devices with Home Assistant over MQTT
 
 
 ```yaml
-ttlock_username: YOUR_TTLOCK_DEVELOPER_ACCOUNT
-ttlock_password: YOUR_TTLOCK_DEVELOPER_PASSWORD
-ttlock_client_id: YOUR_TTLOCK_CLIENT_APP
-ttlock_client_secret: YOUR_TTLOCK_CLIENT_SECRET
-mqtt_host: 'core-mosquitto'
-mqtt_port: '1883'
-mqtt_username: BROKER_USER
-mqtt_password: BROKER_PASS
-publishbatterydelay: 300
-publishstatedelay: 60
-loglevel: info
+TTLock_username: YOUR_TTLOCK_DEVELOPER_ACCOUNT
+TTLock_password: YOUR_TTLOCK_DEVELOPER_PASSWORD
+TTLock_client_Id: YOUR_TTLOCK_CLIENT_APP
+TTLock_client_secrect: YOUR_TTLOCK_CLIENT_SECRET
+Scan_interval: 60
+Log_level: info
 ```
 
-### Options: `ttlock_username` *and* `ttlock_password`
+### Options: `TTLock_username` *and* `TTLock_password`
 Your developer account you created.
 
-### Options: `ttlock_client_id` *and* `ttlock_client_secret`
+### Options: `TTLock_client_Id` *and* `TTLock_client_secrect`
 You need to wait for your app to be reviewed. It will takes several days.
 
-### Options: `mqtt_host`, `mqtt_port`, `mqtt_username` *and* `mqtt_password`
-
-Your MQTT Broker address and credentials. If you don't know what this is, install this addon:
-https://github.com/home-assistant/hassio-addons/tree/master/mosquitto
-
-### Option: `loglevel`
+### Option: `Log_level`
 
 - `debug`: Shows detailed debug information.
 - `info`: Default informations.
 - `warning`: Little alerts.
 - `error`:  Only errors.
+
+### MQTT Broker:
+If you don't know what this is, install this addon:
+https://github.com/home-assistant/hassio-addons/tree/master/mosquitto

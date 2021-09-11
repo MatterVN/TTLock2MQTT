@@ -1,6 +1,6 @@
 {
   "name": "TTLock2MQTT",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "slug": "ttlock2mqtt",
   "description": "Connection between TTLock devices with Home Assistant using MQTT",
   "arch": [
@@ -13,26 +13,19 @@
   "services": [
     "mqtt:need"
   ],
-  "url": "https://github.com/tonyldo/tonyldo-hassio-addons/tree/master/ttlock2mqtt",
+  "url": "https://github.com/TenySmart/TTLock2MQTT",
   "startup": "system",
   "boot": "auto",
   "options": {
-    "mqtt_host": "core-mosquitto",	
-    "publishstatedelay": 60,
-    "publishbatterydelay": 300,
-    "loglevel": "INFO"
+    "Scan_interval": 60,
+    "Log_level": "INFO"
   },
   "schema": {
-    "ttlock_username": "str",
-    "ttlock_password":"str",
-    "ttlock_client_id": "str",
-    "ttlock_client_secrect": "str",
-    "mqtt_host": "str?",	
-    "mqtt_port": "port?",	
-    "mqtt_username": "str",	
-    "mqtt_password": "str",
-    "publishstatedelay": "int?",
-    "publishbatterydelay": "int?",
-    "loglevel": "list(DEBUG|INFO|WARNING|ERROR)?"
+    "TTLock_username": "str",
+    "TTLock_password":"str",
+    "TTLock_client_Id": "str",
+    "TTLock_client_secrect": "str",
+    "Scan_interval": "int(10,3600)",
+    "Log_level": "list(DEBUG|INFO|WARNING|ERROR)"
   }
 }
