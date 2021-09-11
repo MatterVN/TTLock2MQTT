@@ -368,7 +368,7 @@ if __name__ == '__main__':
     loglevel = 'INFO'
     full_cmd_arguments = sys.argv
     argument_list = full_cmd_arguments[1:]
-    short_options = 'U:P:i:s:b:o:u:p:l:S'
+    short_options = 'u:p:i:s:m:o:U:P:l:S'
     long_options = ['tt_user=', 'tt_pass=','tt_id=','tt_secret=','mqtt_host=', 'mqtt_port=', 'mqtt_user=',
                     'mqtt_pass=', 'log_level=', 'scan=']
     try:
