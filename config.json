@@ -1,6 +1,6 @@
 {
   "name": "TTLock2MQTT",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "slug": "ttlock2mqtt",
   "description": "Connection between TTLock devices with Home Assistant using MQTT",
   "arch": [

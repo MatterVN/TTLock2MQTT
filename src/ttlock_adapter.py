@@ -83,7 +83,7 @@ class TTLock2MQTTClientGateway(TTLock2MQTTClient):
             self.getGatewayId())
         self.CONNECTION_BINARY_SENSOR_TOPIC = 'TTLock2MQTT/{}/connection'.format(
             self.getGatewayId())
-        self.CONNECTION_BINARY_SENSOR_PAYLOAD = '{{"device_class": "connectivity", "name": "{} connection", "state_topic": "{}", "value_template": "{{{{ value_json.connection }}}}", "uniq_id":"{}_CONNECTION","device":{{"identifiers":["{}"], "name": "TTLOCK_GATEWAY_{}", "connections":[["mac","{}"]]}} }}'
+        self.CONNECTION_BINARY_SENSOR_PAYLOAD = '{{"device_class": "connectivity", "name": "{} connection", "state_topic": "{}", "value_template": "{{{{ value_json.connection }}}}", "uniq_id":"{}_CONNECTION","device":{{"identifiers":["{}"], "name": "TTLOCK_GATEWAY_{}", "mf": "TTLock","model": "G2", "connections":[["mac","{}"]]}} }}'
         self.CONNECTION_PAYLOAD = '{{"connection": "{}"}}'
 
         self.lastConnectionPublishInfo = time.time()
@@ -158,8 +158,8 @@ class TTLock2MQTTClientLock(TTLock2MQTTClient):
         self.COMMAND_TOPIC = 'TTLock2MQTT/{}/command'.format(self.getLockId())
         self.STATE_SENSOR_TOPIC = 'TTLock2MQTT/{}/state'.format(
             self.getLockId())
-        self.DISCOVERY_LOCK_PAYLOAD = '{{"name": "{} lock", "command_topic": "{}", "state_topic": "{}", "value_template": "{{{{ value_json.state }}}}", "uniq_id":"{}_lock","device":{{"identifiers":["{}"], "name": "TTLOCK_LOCK_{}", "connections":[["mac","{}"]]}} }}'
-        self.DISCOVERY_BATTERY_LEVEL_SENSOR_PAYLOAD = '{{"device_class": "battery", "name": "{} battery", "state_topic": "{}", "unit_of_measurement": "%", "value_template": "{{{{ value_json.battery }}}}", "uniq_id":"{}_battery","device":{{"identifiers":["{}"], "name": "TTLOCK_LOCK_{}", "connections":[["mac","{}"]]}} }}'
+        self.DISCOVERY_LOCK_PAYLOAD = '{{"name": "{} lock", "command_topic": "{}", "state_topic": "{}", "value_template": "{{{{ value_json.state }}}}", "uniq_id":"{}_lock","device":{{"identifiers":["{}"], "mf": "TTLock","model": "G2", "name": "TTLOCK_LOCK_{}", "connections":[["mac","{}"]]}} }}'
+        self.DISCOVERY_BATTERY_LEVEL_SENSOR_PAYLOAD = '{{"device_class": "battery", "name": "{} battery", "state_topic": "{}", "unit_of_measurement": "%", "value_template": "{{{{ value_json.battery }}}}", "uniq_id":"{}_battery","device":{{"identifiers":["{}"], "mf": "TTLock","model": "G2", "name": "TTLOCK_LOCK_{}", "connections":[["mac","{}"]]}} }}'
         self.STATE_PAYLOAD = '{{"state": "{}"}}'
         self.BATTERY_LEVEL_PAYLOAD = '{{"battery": {}}}'
 
@@ -253,6 +253,7 @@ class TTLock2MQTTClientLock(TTLock2MQTTClient):
         ), self.BATTERY_LEVEL_SENSOR_TOPIC, self.getLockId(), self.getLockId(), self.getLockId(), self.getMac())
         self.sendMensage(self.DISCOVERY_SENSOR_TOPIC, msg, True)
 
+#DISCOVERY_LOCK_PAYLOAD = '{{"name": "{} lock", "command_topic": "{}", "state_topic": "{}", "value_template": "{{{{ value_json.state }}}}", "uniq_id":"{}_lock","device":{{"identifiers":["{}"], "name": "TTLOCK_LOCK_{}, "mf": "TTLock","model": "G2", "connections":[["mac","{}"]]}} }}'#        
         msg = self.DISCOVERY_LOCK_PAYLOAD.format(self.getName(), self.COMMAND_TOPIC, self.STATE_SENSOR_TOPIC, self.getLockId(
         ), self.getLockId(), self.getLockId(), self.getMac())
         self.sendMensage(self.DISCOVERY_LOCK_TOPIC, msg, True)
@@ -370,9 +371,9 @@ if __name__ == '__main__':
     loglevel = 'INFO'
     full_cmd_arguments = sys.argv
     argument_list = full_cmd_arguments[1:]
-    short_options = 'u:p:i:s:m:o:U:P:l:S'
-    long_options = ['tt_user=', 'tt_pass=','tt_id=','tt_secret=','mqtt_host=', 'mqtt_port=', 'mqtt_user=',
-                    'mqtt_pass=', 'log_level=', 'scan=']
+    short_options = 'u:p:i:s:e:M:P:U:A:l'
+    long_options = ['tt_user=', 'tt_pass=','tt_id=', 'scan=','tt_secret=','mqtt_host=', 'mqtt_port=', 'mqtt_user=',
+                    'mqtt_pass=', 'log_level=']
     try:
         arguments, values = getopt.getopt(
             argument_list, short_options, long_options)
@@ -382,25 +383,25 @@ if __name__ == '__main__':
     for current_argument, current_value in arguments:
         if isEmptyStr(current_value):
             pass
-        elif current_argument in ("-U", "--tt_user"):
+        elif current_argument in ("-u", "--tt_user"):
             ttlock_user = current_value
-        elif current_argument in ("-P", "--tt_pass"):
+        elif current_argument in ("-p", "--tt_pass"):
             ttlock_pass = current_value
         elif current_argument in ("-i", "--tt_id"):
             ttlock_client = current_value
-        elif current_argument in ("-s", "--tt_secret"):
+        elif current_argument in ("-e", "--tt_secret"):
             ttlock_secret = current_value
-        elif current_argument in ("-m", "--mqtt_host"):
+        elif current_argument in ("-M", "--mqtt_host"):
             broker = current_value 
-        elif current_argument in ("-o", "--mqtt_port"):
+        elif current_argument in ("-P", "--mqtt_port"):
             port = int(current_value)
-        elif current_argument in ("-u", "--mqtt_user"):
+        elif current_argument in ("-U", "--mqtt_user"):
             broker_user = current_value
-        elif current_argument in ("-p", "--mqtt_pass"):
+        elif current_argument in ("-A", "--mqtt_pass"):
             broker_pass = current_value
         elif current_argument in ("-l", "--log_level"):
             loglevel = current_value
-        elif current_argument in ("-S", "--scan"):
+        elif current_argument in ("-s", "--scan"):
             scan_interval = int(current_value)
 
 
