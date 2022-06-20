@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.3.1
+ - Asterisk password field
+ - Convert config to yaml format
+
 ## 0.3.3
 - Include manufacture and name in mqtt message
 - Fix S6-overlay in new Home Assistant
