@@ -1,4 +1,4 @@
-#!/usr/bin/env bashio
+#!/usr/bin/with-contenv bashio
 
 TTLOCK_USER=$(bashio::config 'TTLock_username')
 TTLOCK_PASS=$(bashio::config 'TTLock_password')
