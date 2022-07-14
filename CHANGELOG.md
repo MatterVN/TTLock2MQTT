@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.4
+ - Update Paho-MQTT
+ - Update apparmor.txt
+ - Replace build.json by build.yaml
+
 ## 0.3.3.1
  - Asterisk password field
  - Convert config to yaml format
