@@ -11,7 +11,7 @@ Enables adding your TTLock devices with Home Assistant over MQTT using [TTLock A
 
 ## Installation
 1. Navigate in your Home Assistant frontend to **Supervisor** -> **Add-on Store**.
-2. Click the 3-dots menu at upper right **...** > **Repositories** and add [https://github.com/TenySmart/HassioAddons](https://github.com/TenySmart/HassioAddonsAddons)
+2. Click the 3-dots menu at upper right **...** > **Repositories** and add [https://github.com/MatterVN/HassioAddons](https://github.com/MatterVN/HassioAddonsAddons)
 3. Install TTLock2MQTT Addon
 4. Read the [DOCS](https://github.com/tonyldo/ttlockio) to get TTLock credentials.
 5. Configure and **Start** it
@@ -28,5 +28,3 @@ Distributed under the Apache-2.0 License. See ``LICENSE`` for more information.
 [maintenance-shield]: https://img.shields.io/maintenance/yes/2020.svg
 [ttlockapi]: https://open.ttlock.com/doc/userGuide
 [github_tonyldo]: https://github.com/tonyldo/
-
-

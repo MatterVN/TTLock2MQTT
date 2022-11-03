@@ -1,0 +1,12 @@
+# https://developers.home-assistant.io/docs/add-ons/configuration#add-on-dockerfile
+build_from:
+  aarch64: "homeassistant/aarch64-base-python"
+  amd64: "homeassistant/amd64-base-python"
+  armhf: "homeassistant/armhf-base-python"
+  armv7: "homeassistant/armv7-base-python"
+  i386: "homeassistant/i386-base-python"
+labels:
+  org.opencontainers.image.title: "Home Assistant Add-on: TTlock2MQTT"
+  org.opencontainers.image.description: "Connection between TTLock devices with Home Assistant using MQTT."
+  org.opencontainers.image.source: "https://github.com/tonyldo/tonyldo-hassio-addons"
+  org.opencontainers.image.licenses: "Apache License 2.0"

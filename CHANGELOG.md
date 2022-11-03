@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.5
+A restructuring was made to adapt the docker base image to the S6-Overlay 3.x update and some new features such as obtaining the mqtt configuration via service (by leofig-rj).
+
 ## 0.3.4
  - Update Paho-MQTT
  - Update apparmor.txt

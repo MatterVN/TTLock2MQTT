@@ -1,0 +1,46 @@
+#!/usr/bin/with-contenv bashio
+# ==============================================================================
+# Start the ttlock2mqtt service
+# s6-overlay docs: https://github.com/just-containers/s6-overlay
+# ==============================================================================
+
+SCAN_INTERVAL=$(bashio::config 'Scan_interval')
+
+
+
+# Declare variables
+declare ttlockclientid
+declare ttlocksecret
+declare ttlock_user
+declare ttlock_password
+declare publishstatedelay
+declare publishbatterydelay
+declare loglevel
+declare maxthreads
+declare mqttbrokerhost
+declare mqttbrokerport
+declare mqttbrokeruser
+declare mqttbrokerpass
+
+# Get the keys from the user config options.
+ttlockclientid=$(bashio::config 'TTLock_client_Id')
+ttlocksecret=$(bashio::config 'TTLock_client_secrect')
+ttlock_user=$(bashio::config 'TTLock_username')
+ttlock_password=$(bashio::config 'TTLock_password')
+
+publishstatedelay=$(bashio::config 'publishstatedelay')
+publishbatterydelay=$(bashio::config 'publishbatterydelay')
+loglevel=$(bashio::config 'Log_level')
+maxthreads=$(bashio::config 'maxthreads')
+
+# Get the keys from the mqtt service.
+mqttbrokerhost=$(bashio::services mqtt "host")
+mqttbrokerport=1883
+mqttbrokeruser=$(bashio::services mqtt "username")
+mqttbrokerpass=$(bashio::services mqtt "password")
+
+# Print
+bashio::log.info "Run application..."
+
+# Run application
+exec python3 /usr/bin/ttlock_adapter.py --client=${ttlockclientid} --token=${ttlocktoken} --broker=${mqttbrokerhost} --port=${mqttbrokerport} --user=${mqttbrokeruser} --Pass=${mqttbrokerpass} --State_delay=${publishstatedelay} --Battery_delay=${publishbatterydelay} --log_level=${loglevel} --Max_threads=${maxthreads}

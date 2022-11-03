@@ -18,4 +18,7 @@ else
     bashio::log.info "Configured'$MQTT_HOST' mqtt broker."
 fi
 
+# Print
+bashio::log.info "Run application..."
+
 exec python3 /ttlock_adapter.py --tt_user=${TTLOCK_USER} --tt_pass=${TTLOCK_PASS} --tt_id=${TTLOCK_CLIENT_ID} --tt_secret=${TTLOCK_SECRET}  --mqtt_host=${MQTT_HOST} --mqtt_port=${MQTT_PORT} --mqtt_user=${MQTT_USER} --mqtt_pass=${MQTT_PASS} --scan=${SCAN_INTERVAL} --log_level=${LOG_LEVEL}
