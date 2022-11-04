@@ -4,43 +4,39 @@
 # s6-overlay docs: https://github.com/just-containers/s6-overlay
 # ==============================================================================
 
-SCAN_INTERVAL=$(bashio::config 'Scan_interval')
-
-
-
 # Declare variables
-declare ttlockclientid
-declare ttlocksecret
-declare ttlock_user
-declare ttlock_password
-declare publishstatedelay
-declare publishbatterydelay
-declare loglevel
-declare maxthreads
-declare mqttbrokerhost
-declare mqttbrokerport
-declare mqttbrokeruser
-declare mqttbrokerpass
+declare tt_user
+declare tt_password
+declare tt_id
+declare tt_secret
+declare mqtt
+declare mqtt_port
+declare mqtt_user
+declare mqtt_pass
+declare log_level
+declare State_delay
+declare Battery_delay
+declare Max_threads
 
 # Get the keys from the user config options.
-ttlockclientid=$(bashio::config 'TTLock_client_Id')
-ttlocksecret=$(bashio::config 'TTLock_client_secrect')
-ttlock_user=$(bashio::config 'TTLock_username')
-ttlock_password=$(bashio::config 'TTLock_password')
+tt_user=$(bashio::config 'TTLock_username')
+tt_password=$(bashio::config 'TTLock_password')
+tt_id=$(bashio::config 'TTLock_client_Id')
+tt_secret=$(bashio::config 'TTLock_client_secrect')
 
-publishstatedelay=$(bashio::config 'publishstatedelay')
-publishbatterydelay=$(bashio::config 'publishbatterydelay')
-loglevel=$(bashio::config 'Log_level')
-maxthreads=$(bashio::config 'maxthreads')
+log_level=$(bashio::config 'Log_level')
+State_delay=$(bashio::config 'State_delay')
+Battery_delay=$(bashio::config 'Battery_delay')
+Max_threads=$(bashio::config 'Max_threads')
 
 # Get the keys from the mqtt service.
-mqttbrokerhost=$(bashio::services mqtt "host")
-mqttbrokerport=1883
-mqttbrokeruser=$(bashio::services mqtt "username")
-mqttbrokerpass=$(bashio::services mqtt "password")
+mqtt=$(bashio::services mqtt "host")
+mqtt_port=1883
+mqtt_user=$(bashio::services mqtt "username")
+mqtt_pass=$(bashio::services mqtt "password")
 
 # Print
 bashio::log.info "Run application..."
 
 # Run application
-exec python3 /usr/bin/ttlock_adapter.py --client=${ttlockclientid} --token=${ttlocktoken} --broker=${mqttbrokerhost} --port=${mqttbrokerport} --user=${mqttbrokeruser} --Pass=${mqttbrokerpass} --State_delay=${publishstatedelay} --Battery_delay=${publishbatterydelay} --log_level=${loglevel} --Max_threads=${maxthreads}
+exec python3 /usr/bin/ttlock_adapter.py --tt_user=${ttlock_user} --tt_pass=${ttlock_password} --tt_id=${ttlockclientid} --tt_secret=${ttlocksecret} --mqtt=${mqttbrokerhost} --mqtt_port=${mqttbrokerport} --mqtt_user=${mqttbrokeruser} --mqtt_pass=${mqttbrokerpass} --log_level=${log_level}  --State_delay=${State_delay} --Battery_delay=${Battery_delay} --Max_threads=${Max_threads}

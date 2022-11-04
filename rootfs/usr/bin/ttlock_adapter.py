@@ -414,8 +414,8 @@ if __name__ == '__main__':
     logging.basicConfig(level=numeric_level, datefmt='%Y-%m-%d %H:%M:%S',
                         format='%(asctime)-15s - [%(levelname)s] TTLock2MQTT: %(message)s', )
 
-    logging.debug("Options: {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}".format(
-        ttlock_user, ttlock_pass, ttlock_client, ttlock_secret, broker, port, broker_user,loglevel, broker_pass,scan_interval,battery_scan_interval))
+    logging.debug("Options: {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}".format(
+        ttlock_user, ttlock_pass, ttlock_client, ttlock_secret, broker, port, broker_user, broker_pass, loglevel, state_delay, battery_delay, max_threads))
     ttlock_token = create_access_token(ttlock_user, ttlock_pass, ttlock_client, ttlock_secret)
     logging.debug("Access Token: {}".format(ttlock_token))
     

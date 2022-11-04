@@ -2,7 +2,7 @@ name: TTLock2MQTT
 version: "0.7"
 slug: ttlock2mqtt
 description: Connection between TTLock devices with Home Assistant using MQTT
-url: "https://github.com/TenySmart/TTLock2MQTT"
+url: "https://github.com/MatterVN/TTLock2MQTT"
 arch: 
   - armhf
   - armv7
@@ -15,15 +15,15 @@ boot: auto
 services:
   - "mqtt:need"
 options:
-  Publish_State_delay: 60
-  Publish_Battery_delay: 300
+  State_delay: 60
+  Battery_delay: 300
   Log_level: "INFO"
 schema:
   TTLock_username: "str"
   TTLock_password: "password"
   TTLock_client_Id: "str"
   TTLock_client_secrect: "str"
-  Publish_State_delay: "int(10,3600)"
-  Publish_Battery_delay: "int(10,3600)"
+  State_delay: "int(10,3600)"
+  Battery_delay: "int(10,3600)"
   Log_level: "list(DEBUG|INFO|WARNING|ERROR)"
-  Maxthreads: "int?"
+  Max_threads: "int?"
