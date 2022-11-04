@@ -1,4 +1,6 @@
 # TTLock2MQTT
+> My organization has renamed to MatterVN. All "TenySmart" repos will be redirected to "MatterVN".
+> Please check and update your urls.
 > Integrating your TTLocks devices with Home Assistant over MQTT.
 
 ![Project Stage][project-stage-shield]![Maintenance][maintenance-shield] 
