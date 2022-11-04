@@ -39,4 +39,4 @@ mqtt_pass=$(bashio::services mqtt "password")
 bashio::log.info "Run application..."
 
 # Run application
-exec python3 /usr/bin/ttlock_adapter.py --tt_user=${ttlock_user} --tt_pass=${ttlock_password} --tt_id=${ttlockclientid} --tt_secret=${ttlocksecret} --mqtt=${mqttbrokerhost} --mqtt_port=${mqttbrokerport} --mqtt_user=${mqttbrokeruser} --mqtt_pass=${mqttbrokerpass} --log_level=${log_level}  --State_delay=${State_delay} --Battery_delay=${Battery_delay} --Max_threads=${Max_threads}
+exec python3 /usr/bin/ttlock_adapter.py --tt_user=${tt_user} --tt_pass=${tt_password} --tt_id=${tt_id} --tt_secret=${tt_secret} --mqtt=${mqtt} --mqtt_port=${mqtt_port} --mqtt_user=${mqtt_user} --mqtt_pass=${mqtt_pass} --log_level=${log_level}  --State_delay=${State_delay} --Battery_delay=${Battery_delay} --Max_threads=${Max_threads}

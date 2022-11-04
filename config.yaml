@@ -23,7 +23,7 @@ schema:
   TTLock_password: "password"
   TTLock_client_Id: "str"
   TTLock_client_secrect: "str"
+  Log_level: "list(DEBUG|INFO|WARNING|ERROR)"
   State_delay: "int(10,3600)"
   Battery_delay: "int(10,3600)"
-  Log_level: "list(DEBUG|INFO|WARNING|ERROR)"
   Max_threads: "int?"
