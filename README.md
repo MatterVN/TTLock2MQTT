@@ -25,6 +25,6 @@ Distributed under the Apache-2.0 License. See ``LICENSE`` for more information.
 <!-- Markdown link -->
 [wiki]: https://github.com/tonyldo/tonyldo-hassio-addons
 [project-stage-shield]: https://img.shields.io/badge/project%20stage-development%20beta-red.svg
-[maintenance-shield]: https://img.shields.io/maintenance/yes/2020.svg
-[ttlockapi]: https://open.ttlock.com/doc/userGuide
+[maintenance-shield]: https://img.shields.io/maintenance/yes/2022.svg
+[ttlockapi]: https://euopen.ttlock.com/doc/userGuide
 [github_tonyldo]: https://github.com/tonyldo/
