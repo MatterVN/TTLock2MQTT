@@ -30,10 +30,14 @@ Battery_delay=$(bashio::config 'Battery_delay')
 Max_threads=$(bashio::config 'Max_threads')
 
 # Get the keys from the mqtt service.
-mqtt=$(bashio::services mqtt "host")
-mqtt_port=1883
-mqtt_user=$(bashio::services mqtt "username")
-mqtt_pass=$(bashio::services mqtt "password")
+if ! bashio::services.available "mqtt"; then
+   bashio::exit.nok "No internal MQTT Broker found. Please install Mosquitto broker."
+else
+    mqtt=$(bashio::services mqtt "host")
+    mqtt_port=1883
+    mqtt_user=$(bashio::services mqtt "username")
+    mqtt_pass=$(bashio::services mqtt "password")
+fi
 
 # Print
 bashio::log.info "Run application..."
