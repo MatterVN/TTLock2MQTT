@@ -36,6 +36,3 @@ RUN pip3 install -r /tmp/requirements.txt
 # Set execution permissions
 RUN chmod a+x /etc/services.d/ttlock2mqtt/run
 RUN chmod a+x /etc/services.d/ttlock2mqtt/finish
-RUN chmod a+x /run.sh
-
-#CMD [ "/run.sh" ]
