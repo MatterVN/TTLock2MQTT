@@ -1,0 +1,29 @@
+{
+  "name": "TTLock2MQTT",
+  "version": "0.7",
+  "slug": "ttlock2mqtt",
+  "description": "Connection between TTLock devices with Home Assistant using MQTT and TTLock cloud",
+  "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
+  "url": "https://github.com/MatterVN/TTLock2MQTT",
+  "init": false,
+  "startup": "application",
+  "boot": "auto",
+  "services": [
+    "mqtt:need"
+  ],
+  "options": {
+    "State_delay": 60,
+    "Battery_delay": 300,
+    "Log_level": "INFO"    
+  },
+  "schema": {
+    "TTLock_username": "str",
+    "TTLock_password": "password",
+    "TTLock_client_Id": "str",
+    "TTLock_client_secrect": "str",
+    "Log_level": "list(DEBUG|INFO|WARNING|ERROR)",
+    "State_delay": "int(0,2600)",
+    "Battery_delay": "int(0,3600)",
+    "Max_threads": "int(1,4)?"
+  }
+}
